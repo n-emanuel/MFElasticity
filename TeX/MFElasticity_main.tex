@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx,xcolor}
+
+\usepackage{amsmath,amssymb,amsthm,textcomp,mathtools, enumerate,multirow,bbm,outlines,hyperref, setspace,booktabs,dcolumn}
+\usepackage[para,online,flushleft]{threeparttable}
+
+% References/Bibliography
+\usepackage[backend=biber, style=authoryear, sorting=nyt]{biblatex}
+\addbibresource{bib.bib}
+
+\usepackage{geometry}
+\geometry{total={210mm,297mm},
+left=25mm,right=25mm,%
+bindingoffset=0mm, top=20mm,bottom=20mm}
+
+%\linespread{1.5}
+
+
+% my own titles
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\rule{\linewidth}{0.5pt}\\
+\@author \hfill \@date
+\vspace{3ex}
+\end{center}
+}
+\makeatother
+%%%
+
+\newcommand{\newquestion}[1]{
+    \vspace{12pt}
+    \noindent \begin{singlespace}\textbf{#1} \end{singlespace}
+}
+
+\newcommand{\FixMe}[1]{
+    \textcolor{red}{\large [#1]}
+}
+
+
+
+
+%%%----------%%%----------%%%----------%%%----------%%%
+
+
+\begin{document}
+
+\title{Elasticity of Male Labor Supply}
+
+\author{Natalia Emanuel}
+
+\date{Spring 2017}
+
+\maketitle
+
+\section{Introduction}
+\section{Motivation}
+\section{Methodology and Data}
+This study uses data from the American Community Survey 2005-2015. 
+
+\subsection{Main Specification}
+The main specification looks at all couples, not just married couples. In particular, if a couple is living together and the ACS records that they are unmarried partners, they are included in the sample. The present sample includes only ACS heads of households and their spouses or unmarried partners. 
+
+Several households include two married couples (for instance, two parents, a child and a child-in-law). However, for these families, it would not be possible to determine if they have an unmarried partner of non-heads of household using the ACS. As there might be selection, I aim to look at this population as well, noting that it is not inclusive of unmarried partners.
+
+\section{Findings}
+
+\section{Data Appendix}
+Several adjustments are made to wages and income variables. First, incomes have been converted to 2015 real dollars using the National Income and Product Account price index for personal consumption expenditures \parencite{fred_pcepi}. and another sample of a \parencite{Heckman79}
+
+Second, those who had zero earnings had to be accounted for. Two approaches were taken.
+
+Third, the ACS top-codes incomes. From 2003 onward, incomes above the 99.5th percentile of the state's incomes are top-coded. Incomes above this threshold are coded as the state means of values above the listed Top Code value for that specific Census year. The topcodes for each year/state pair are available from \href{https://usa.ipums.org/usa-action/variables/INCWAGE#codes_section}{usa.ipums.org}.
+
+\printbibliography
+
+\end{document}

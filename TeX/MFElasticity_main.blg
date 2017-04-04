@@ -1,0 +1,15 @@
+[1] Config.pm:343> INFO - This is Biber 2.5
+[1] Config.pm:346> INFO - Logfile is 'MFElasticity_main.blg'
+[63] biber-darwin:290> INFO - === Tue Apr  4, 2017, 15:38:09
+[88] Biber.pm:351> INFO - Reading 'MFElasticity_main.bcf'
+[211] Biber.pm:776> INFO - Found 2 citekeys in bib section 0
+[237] Biber.pm:3493> INFO - Processing section 0
+[260] Biber.pm:3657> INFO - Looking for bibtex format file 'bib.bib' for section 0
+[262] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
+[263] bibtex.pm:1048> INFO - Found BibTeX data source 'bib.bib'
+[285] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[285] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[285] Biber.pm:3306> INFO - Sorting list 'nyt/global/' of type 'entry' with scheme 'nyt' and locale 'en-US'
+[285] Biber.pm:3310> INFO - No sort tailoring available for locale 'en-US'
+[288] bbl.pm:526> INFO - Writing 'MFElasticity_main.bbl' with encoding 'UTF-8'
+[289] bbl.pm:619> INFO - Output to MFElasticity_main.bbl

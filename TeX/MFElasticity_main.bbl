@@ -1,0 +1,72 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.7 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{nyt/global/}
+    \entry{fred_pcepi}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=de0b249d387e90cd6dd7c1e4c993888d}{%
+           prefix={of},
+           prefix_i={o\bibinitperiod},
+           family={Economic\bibnamedelima Analysis},
+           family_i={E\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={U.S.\bibnamedelimi Bureau},
+           given_i={U\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{de0b249d387e90cd6dd7c1e4c993888d}
+      \strng{fullhash}{de0b249d387e90cd6dd7c1e4c993888d}
+      \field{sortinit}{E}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelyear}{2017}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://fred.stlouisfed.org/series/PCEPI}}
+      \field{note}{Accessed: 28 March 2017}
+      \field{title}{Personal Consumption Expenditures: Chain-type Price Index [PCEPI], retrieved from FRED, Federal Reserve Bank of St. Louis}
+      \field{year}{2017}
+    \endentry
+    \entry{Heckman79}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=31a1496cdbf5dc77b32758042c61ba9c}{%
+           family={Heckman},
+           family_i={H\bibinitperiod},
+           given={James},
+           given_i={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{31a1496cdbf5dc77b32758042c61ba9c}
+      \strng{fullhash}{31a1496cdbf5dc77b32758042c61ba9c}
+      \field{sortinit}{H}
+      \field{sortinithash}{82012198d5dfa657b8c4a168793268a6}
+      \field{labelyear}{1979}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Econometrica}
+      \field{number}{1}
+      \field{title}{Sample Selection Bias as a Specification Error}
+      \field{volume}{47}
+      \field{year}{1979}
+      \field{pages}{153\bibrangedash 61}
+      \range{pages}{9}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
