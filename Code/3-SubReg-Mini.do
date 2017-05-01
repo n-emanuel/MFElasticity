@@ -4,7 +4,7 @@
 * Written: 16 Feb 2017									   				*
 * Last Edited: 16 March 2017							   				*
 *               										   				*
-* NOTES: to be called by 2-MainAnalysis after 2-SubDescriptive			*										   			*
+* NOTES: to be called by 3-MainAnalysis 								*										   			*
 *************************************************************************
 
 
@@ -62,51 +62,24 @@ local instrument i.wagedecile
 
 * Female
 local group F
-local sampspecs female==1 & sample_hhheads25==1 & validwage==1
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
+local sampspecs female==1 & sample_hhheads25==1 
+foreach specification in nokids_noedu kids_noedu nokids_edu kids_edu{
 	di in green "`group'_`outname'_`instname'_`specification'_`yr'"
 	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, eydx(lwage lwage_sp /*unearnedinc15_sp*/) atmeans
+	margins, eydx(lwage lwage_sp /*unearnedinc15_sp*/) atmeans
 	storeelasticities `group'_`outname'_`instname'_`specification'
 }
 
 * Male 
 local group M 
-local sampspecs female==0 & sample_hhheads25==1 & validwage==1
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
+local sampspecs female==0 & sample_hhheads25==1 
+foreach specification in nokids_noedu kids_noedu nokids_edu  kids_edu{
 	di in green "`group'_`outname'_`instname'_`specification'_`yr'"
 	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
 	estadd margins, eydx(lwage lwage_sp /*unearnedinc15_sp*/) atmeans
 	storeelasticities `group'_`outname'_`instname'_`specification'
 }
 
-/* Same Sex Both sexes
-local group Stot
-local sampspecs sames==1 & sample_hhheads25==1 & validwage==1
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	capture eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, eydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-
-* Same Sex Female
-local group SF
-local sampspecs sames==1 & female==1 & sample_hhheads25==1 & validwage==1
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	capture eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, eydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-
-* Same Sex Male
-local group SM
-local sampspecs sames==0 & female==0 & sample_hhheads25==1 & validwage==1
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, eydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-*/
 ****************************  Instrument: Group Mean  ****************************
 local outname hrs
 local outcome annualwkhrs 
@@ -131,34 +104,7 @@ foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
 	estadd margins, eydx(lwage lwage_sp /*unearnedinc15_sp*/) atmeans
 	storeelasticities `group'_`outname'_`instname'_`specification'
 }
-/* Same Sex Both sexes
-local group Stot
-local sampspecs sames==1 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, eydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
 
-* Same Sex Female
-local group SF
-local sampspecs sames==1 & female==1 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, eydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-
-* Same Sex Male
-local group SM
-local sampspecs sames==0 & female==0 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, eydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-
-*/
 
 
 *******************************************
@@ -173,7 +119,7 @@ local instrument i.wagedecile
 
 * Male 
 local group M 
-local sampspecs female==0 & sample_hhheads25==1 & validwage==1
+local sampspecs female==0 & sample_hhheads25==1 
 foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
 	di in green "`group'_`outname'_`instname'_`specification'_`yr'"
 	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
@@ -182,37 +128,14 @@ foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
 
 * Female
 local group F
-local sampspecs female==1 & sample_hhheads25==1 & validwage==1
+local sampspecs female==1 & sample_hhheads25==1 
 foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
 	di in green "`group'_`outname'_`instname'_`specification'_`yr'"
 	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
 	storeelasticities `group'_`outname'_`instname'_`specification'
 }
-/*
-* Same Sex Both sexes
-local group Stot
-local sampspecs sames==1 & sample_hhheads25==1 & validwage==1
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
 
-* Same Sex Female
-local group SF
-local sampspecs sames==1 & female==1 & sample_hhheads25==1 & validwage==1
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
 
-* Same Sex Male
-local group SM
-local sampspecs sames==0 & female==0 & sample_hhheads25==1 & validwage==1
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-*/
 ****************************  Instrument: Group Mean  ****************************
 local outname chrs
 local outcome logcondhrs 
@@ -236,31 +159,6 @@ foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
 	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
 	storeelasticities `group'_`outname'_`instname'_`specification'
 }
-/*
-* Same Sex Both sexes
-local group Stot
-local sampspecs sames==1 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-
-* Same Sex Female
-local group SF
-local sampspecs sames==1 & female==1 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-
-* Same Sex Male
-local group SM
-local sampspecs sames==0 & female==0 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivregress 2sls `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-*/
 
 
 *****************************  
@@ -292,34 +190,7 @@ foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
 	estadd margins, dydx(lwage lwage_sp /*unearnedinc15_sp*/) atmeans
 	storeelasticities `group'_`outname'_`instname'_`specification'
 }
-/*
-* Same Sex Both sexes
-local group Stot
-local sampspecs sames==1 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivprobit `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, dydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
 
-* Same Sex Female
-local group SF
-local sampspecs sames==1 & female==1 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivprobit `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, dydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-
-* Same Sex Male
-local group SM
-local sampspecs sames==0 & female==0 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivprobit `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, dydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-*/
 ****************************  Instrument: Group Mean  ****************************
 local outname part
 local outcome outcomepart 
@@ -345,36 +216,7 @@ foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
 	estadd margins, dydx(lwage lwage_sp /*unearnedinc15_sp*/) atmeans
 	storeelasticities `group'_`outname'_`instname'_`specification'
 }
-/*
 
-* Same Sex Both sexes
-local group Stot
-local sampspecs sames==1 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivprobit `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, dydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-
-* Same Sex Female
-local group SF
-local sampspecs sames==1 & female==1 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivprobit `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, dydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-
-* Same Sex Male
-local group SM
-local sampspecs sames==0 & female==0 & sample_hhheads25==1 
-foreach specification in /* nokids_noedu kids_noedu nokids_edu */ kids_edu{
-	eststo `group'_`outname'_`instname'_`specification'_`yr': ivprobit `outcome' (lwage = `instrument') ``specification'' if `sampspecs' [pw=perwt]
-	estadd margins, dydx(lwage lwage_sp /*unearnedinc15_sp*/)
-	storeelasticities `group'_`outname'_`instname'_`specification'
-}
-
-*/
 
 
 

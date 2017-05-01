@@ -13,7 +13,7 @@ acs = read.dta13('/Users/nemanuel/_Files/Research/Datasets/ACS/Build_IPUMS_Elast
 # Set Survey 
 # mimic's stata's "svyset cluster [pweight=hhwt], strata(strata)"
 # https://usa.ipums.org/usa/complex_survey_vars/userNotes_variance.shtml
-acs.hh.design = svydesign(id=~cluster, strata=~strata, data=acs, weights=acs$hhwt)
+acs.hh.design = svydesign(id=~cluster, strata=~strata, data=acs, weights=acs$perwt)
 
 # subset to just our heads of households' couples (the Survey package allows us to do this without messing up std errors)
 # See: http://stats.idre.ucla.edu/stata/faq/how-can-i-analyze-a-subpopulation-of-my-survey-data-in-stata/

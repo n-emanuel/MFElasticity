@@ -10,13 +10,17 @@
 
 ****************** Imputing Wages (Juhn & Murphy) ******************************
 
-* Hrly wage for those who have valid information (work some hours and hrly wage is between 3, 200)
+* Hrly wage for those who have valid information (work some hours and hrly wage is between 3, 300)
 gen hrwage15 = wage15/annualwkhrs if annualwkhrs>0
-replace hrwage15=. if hrwage15<3 | hrwage15>200 | qwks==4 | quhr==4
+replace hrwage15=. if hrwage15<3 | hrwage15>300 | qwks==4 | quhr==4
+
+* indicator for if have allocated hours or weeks
+gen allocated = (qwks==4 | quhr==4)
+label var allocated "hours or weeks are allocated by census"
 
 * indicator for if have valid wages
 gen validwage = hrwage15!=.
-label var validwage "wages not imputed. Wages are imputed if outside $3-200, or if wks worked or hrsworked allocated"
+label var validwage "wages not imputed. Wages are imputed if outside $3-300, or if wks worked or hrsworked allocated"
 
 * Predictions for those who dont have valid wage information, 
 * based only on those w/ valid wages
@@ -81,7 +85,7 @@ foreach v in wagedecile imputedhrwage15 groupmean lwage{
 
 ******************** keep only the variables needed for analyses ******************************
 
-keep year statefip countyfips serial cluster strata hhwt perwt sample_* pernum loc2 sploc married partnered subfam related marst* age age2 age_sp age2_sp agecat female female_sp edu* race race_sp raceblack* raceother* racehisp* regn_* metroarea nkids* nokids* kidslt5 citizen lwage* hrwage15* imputedhrwage15* validwage hrsgroups outcome* annualwkhrs* wksworked* wagedecile* groupmean unearnedinc15_sp occ* ind* empstat* labforce* classwkr* samesex youngerpartner logcondhrs
+keep year statefip countyfips serial cluster strata hhwt perwt sample_* pernum loc2 sploc married partnered allocated subfam related marst* age age2 age_sp age2_sp agecat female female_sp edu* race race_sp raceblack* raceother* racehisp* regn_* metroarea nkids* nokids* kidslt5 citizen lwage* hrwage15* imputedhrwage15* validwage hrsgroups outcome* annualwkhrs* wksworked* wagedecile* groupmean unearnedinc15_sp occ* ind* empstat* labforce* classwkr* samesex youngerpartner logcondhrs
 
 
 
